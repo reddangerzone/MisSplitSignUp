@@ -50,9 +50,11 @@ if st.button('Submit'):
             "something went wrong, this is probably some kind of API error"
     else:
         if player_id in team_ham.keys():
-            "You have already signed up for Team Ham"
+            del team_ham[player_id]
+        if player_id in team_red.keys():
+            del team_red[player_id]
         else:
-            "You have already signed up for Team Red"
+            "something went wrong, this is probably an issue with Red's code"
 
 # Displaying the dictionaries
 st.write('Team Ham:', team_ham)
