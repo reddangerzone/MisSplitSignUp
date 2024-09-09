@@ -58,7 +58,8 @@ if st.button('Submit'):
                     json.dump(team_ham, json_file)
                 st.success(f"Wow, {name}, you've abandoned Ham.")
             if option == f'Team Red: {spots_left_red}':
-                st.success(f"You can't join Red, you're already on Team Ham. To ABANDON HAM HEARTLESSLY re-enter your API key and select Team Ham again, then you'll be able to help Red out, and who could blame you")
+                st.success(f"You can't join Red, you're already on Team Ham. To ABANDON HAM HEARTLESSLY re-enter your "
+                           f"API key and select Team Ham again, then you'll be able to help Red out, and who could blame you")
         if player_id in team_red.keys():
             if option == f'Team Red: {spots_left_red}':
                 del team_red[player_id]
