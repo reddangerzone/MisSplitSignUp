@@ -51,8 +51,14 @@ if st.button('Submit'):
     else:
         if player_id in team_ham.keys():
             del team_ham[player_id]
+            with open('team_ham.json', 'w') as json_file:
+                json.dump(team_ham, json_file)
+            st.success(f"Wow, {name}, you've abandoned Ham.")
         if player_id in team_red.keys():
             del team_red[player_id]
+            with open('team_red.json', 'w') as file:
+                json.dump(team_red, file)
+            st.success(f"Wow, {name}, you've abandoned Red.")
         else:
             "something went wrong, this is probably an issue with Red's code"
 
