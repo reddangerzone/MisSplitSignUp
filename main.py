@@ -35,6 +35,8 @@ if st.button('Submit'):
     user_info = requests.get(f'https://api.torn.com/user/?selections=basic&key={api_key}').json()
     player_id = str(user_info['player_id'])
     name = user_info['name']
+    if player_id is False:
+        "Double check your API, no player ID was registered."
     if player_id not in team_ham.keys() and player_id not in team_red.keys():
         if option == f'Team Ham: {spots_left_ham}':
             team_ham[player_id] = name
@@ -50,15 +52,21 @@ if st.button('Submit'):
             "something went wrong, this is probably some kind of API error"
     else:
         if player_id in team_ham.keys():
-            del team_ham[player_id]
-            with open('team_ham.json', 'w') as json_file:
-                json.dump(team_ham, json_file)
-            st.success(f"Wow, {name}, you've abandoned Ham.")
+            if option == f'Team Ham: {spots_left_ham}':
+                del team_ham[player_id]
+                with open('team_ham.json', 'w') as json_file:
+                    json.dump(team_ham, json_file)
+                st.success(f"Wow, {name}, you've abandoned Ham.")
+            if option == f'Team Red: {spots_left_red}':
+                st.success(f"You can't join Red, you're already on Team Ham. To ABANDON HAM HEARTLESSLY re-enter your API key and select Team Ham again, then you'll be able to help Red out, and who could blame you")
         if player_id in team_red.keys():
-            del team_red[player_id]
-            with open('team_red.json', 'w') as file:
-                json.dump(team_red, file)
-            st.success(f"Wow, {name}, you've abandoned Red.")
+            if option == f'Team Red: {spots_left_red}':
+                del team_red[player_id]
+                with open('team_red.json', 'w') as file:
+                    json.dump(team_red, file)
+                st.success(f"Wow, {name}, you've abandoned Red.")
+            if option == f'Team Ham: {spots_left_ham}':
+                st.success(f"You can't join Ham, you're already on Team Red. To ABANDON RED HEARTLESSY re-enter your API key and select Team Red again. Then you'll be able to join Ham like the little traitor you are.")
         else:
             "something went wrong, this is probably an issue with Red's code"
 
