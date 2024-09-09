@@ -68,8 +68,8 @@ if st.button('Submit'):
                 st.success(f"Wow, {name}, you've abandoned Red.")
             if option == f'Team Ham: {spots_left_ham}':
                 st.success(f"You can't join Ham, you're already on Team Red. To ABANDON RED HEARTLESSY re-enter your API key and select Team Red again. Then you'll be able to join Ham like the little traitor you are.")
-        else:
-            "something went wrong, this is probably an issue with Red's code"
+            else:
+                "something went wrong, this is probably an issue with Red's code"
 
 # Displaying the dictionaries
 st.write('Team Ham:', team_ham)
